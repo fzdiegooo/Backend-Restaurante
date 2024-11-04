@@ -1,10 +1,12 @@
 package com.example.backendrestaurante.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name= "Producto")
@@ -12,6 +14,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -19,5 +22,19 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private Double precio;
+    private String urlImg;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<DetalleVenta> detalleVentaList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<DetallePedido> detallePedidoList;
+
+    @ManyToOne
+    @JoinColumn(name = "categoriaId")
+    private Categoria categoria;
+
 
 }
