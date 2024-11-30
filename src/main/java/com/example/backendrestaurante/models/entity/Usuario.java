@@ -1,5 +1,6 @@
 package com.example.backendrestaurante.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,12 +22,14 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String nombre;
+    private String apellidos;
     private String numDocumento;
-    private String email;
+    //private String email;
     private String username; //Funciona como un email
     private String password;
     private String direccion;
-
+    private String telefono;
+    private boolean Regist;
     @ManyToOne
     @JoinColumn(name = "tipoDocId")
     private TipoDocumento tipoDocumento;

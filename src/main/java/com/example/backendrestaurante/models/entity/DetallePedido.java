@@ -1,5 +1,6 @@
 package com.example.backendrestaurante.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +16,7 @@ import java.util.UUID;
 public class DetallePedido {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private String id;
     private Double precioNeto;
     private int cantidad;
 
@@ -25,5 +26,6 @@ public class DetallePedido {
 
     @ManyToOne
     @JoinColumn(name = "pedidoId")
+    @JsonBackReference
     private Pedido pedido;
 }

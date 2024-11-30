@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -23,6 +25,7 @@ public class Producto {
     private String descripcion;
     private Double precio;
     private String urlImg;
+    private String cloudinaryImageId;
 
     @JsonIgnore
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
@@ -36,5 +39,11 @@ public class Producto {
     @JoinColumn(name = "categoriaId")
     private Categoria categoria;
 
-
+    @ManyToMany
+    @JoinTable(
+            name = "producto_categoria",
+            joinColumns = @JoinColumn(name = "producto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private Set<Categoria> categorias = new HashSet<>();
 }

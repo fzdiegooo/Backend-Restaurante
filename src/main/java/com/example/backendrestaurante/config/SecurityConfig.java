@@ -31,6 +31,11 @@ public class SecurityConfig {
                                         .requestMatchers("/productos/**").permitAll()
                                         .requestMatchers("/categoria").permitAll()
                                         .requestMatchers("/categoria/**").permitAll()
+                                        .requestMatchers("/auth/**").permitAll()
+                                        .requestMatchers("/user/**").permitAll()
+                                        .requestMatchers("/pedidos/**").permitAll()
+                                        .requestMatchers("/user/getRazonSocial").permitAll()
+                                        .requestMatchers("/tipo-entrega").permitAll()
                                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager ->

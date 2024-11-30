@@ -1,6 +1,6 @@
 package com.example.backendrestaurante.config;
 
-import com.example.backendrestaurante.repository.UserRepository;
+import com.example.backendrestaurante.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
